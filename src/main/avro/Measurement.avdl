@@ -31,7 +31,7 @@ protocol WebData {
         Request                     request;
 
     /** The user session information. */
-//        union { null, Session }     session = null;   // This will work
+        union { null, Session }     session = null;   // This will work
 //        Session                     session;          // This will fail schema evolution test (no default value)
     }
 }

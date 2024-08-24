@@ -1,0 +1,5 @@
+services:
+  registry:
+    image: "apicurio/apicurio-registry:latest"
+    ports:
+      - "8000:8080"

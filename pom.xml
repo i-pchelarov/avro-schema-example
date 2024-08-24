@@ -38,13 +38,14 @@
         <!-- In order for everything to work correctly we need at least this version of maven. -->
         <maven.minimal.version>3.5.2</maven.minimal.version>
 
+        <schema.name>Measurement</schema.name>
         <schema.namespace>nl.basjes.avroexample.webdata</schema.namespace>
 
         <!-- FIXME: THIS IS ONLY AN EXAMPLE PROJECT WHERE WE DO NOT ACTUALLY DEPLOY A JAR TO MAVEN CENTRAL        -->
         <!--        SO WE ARE SKIPPING THE DEPLOYMENT STEP WHICH IS A REALLY WEIRD THING ... EXCEPT WHEN IT IS A DEMO -->
         <maven.deploy.skip>true</maven.deploy.skip>
 
-        <avro.version>1.11.0</avro.version>
+        <avro.version>1.12.0</avro.version>
 
         <!-- ============================================== -->
 
@@ -223,18 +224,20 @@
                         <executions>
                             <execution>
                                 <id>Push the newly released schema to the schema registry</id>
-                                <phase>verify</phase>
+                                <phase>deploy</phase>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
                                     <!-- FIXME: THIS IS ONLY AN EXAMPLE PROJECT WHERE WE DO NOT ACTUALLY DEPLOY A SCHEMA TO A REGISTRY -->
                                     <!--        THIS IS JUST A DUMMY IMPLEMENTATION WHICH YOU SHOULD REPLACE WITH WHATEVER YOU HAVE    -->
-                                    <executable>echo</executable>
-                                    <arguments>
-                                        <argument>-e</argument>
-                                        <argument>'\n---\n---\n---\n---\n---Pushing schema for ${project.version} from ${project.basedir}/src/main/resources/schema-history/${project.version}.csv\n---\n---\n---\n---\n---'</argument>
-                                    </arguments>
+                                    <executable>publish-schema.sh</executable>
+                                    <environmentVariables>
+                                        <REGISTRY_URL>http://localhost:8000</REGISTRY_URL>
+                                        <FILE>${project.basedir}/src/main/resources/schema-history/${project.version}.csv</FILE>
+                                        <SCHEMA>${schema.name}</SCHEMA>
+                                        <VERSION>${project.version}</VERSION>
+                                    </environmentVariables>
                                 </configuration>
                             </execution>
                         </executions>

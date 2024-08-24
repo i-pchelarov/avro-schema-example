@@ -23,7 +23,7 @@
     <artifactId>webdata-schema</artifactId>
     <packaging>jar</packaging>
     <groupId>nl.basjes.avro-example</groupId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 
     <name>WebData schema</name>
 
@@ -139,7 +139,40 @@
         </profile>
 
         <profile>
-            <id>prepareRelease</id>
+            <id>start</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.amashchenko.maven.plugin</groupId>
+                        <artifactId>gitflow-maven-plugin</artifactId>
+                        <version>1.21.0</version>
+                        <configuration>
+                            <pushRemote>true</pushRemote>
+                            <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>
+                            <preReleaseGoals>verify</preReleaseGoals>
+                            <preHotfixGoals>verify</preHotfixGoals>
+                            <gitFlowConfig>
+                                <productionBranch>prod</productionBranch>
+                                <developmentBranch>dev</developmentBranch>
+                            </gitFlowConfig>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>Prepare release branch</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>release-start</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>prepare</id>
             <build>
                 <plugins>
                     <plugin>
@@ -194,6 +227,14 @@
                             </execution>
                         </executions>
                     </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
                     <plugin>
                         <groupId>com.amashchenko.maven.plugin</groupId>
                         <artifactId>gitflow-maven-plugin</artifactId>
@@ -209,14 +250,6 @@
                             </gitFlowConfig>
                         </configuration>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>

@@ -261,6 +261,7 @@
                                     <arguments>
                                         <argument>-c</argument>
                                         <argument>
+                                            rm ${project.basedir}/src/main/resources/schema-history/*-SNAPSHOT.csv
                                             rm ${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv;
                                             cat ${project.basedir}/src/main/resources/schema-history/*.csv &gt; ${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv</argument>
                                     </arguments>

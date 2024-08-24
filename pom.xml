@@ -23,7 +23,7 @@
     <artifactId>webdata-schema</artifactId>
     <packaging>jar</packaging>
     <groupId>nl.basjes.avro-example</groupId>
-    <version>1.0.8</version>
+    <version>1.0.9-SNAPSHOT</version>
 
     <name>WebData schema</name>
 
@@ -496,8 +496,8 @@
 
                     <tagNameFormat>v@{project.version}</tagNameFormat>
 
-                    <preparationGoals>-PprepareRelease clean verify</preparationGoals>
-                    <releaseProfiles>release</releaseProfiles>
+                    <preparationGoals>-Pschema,publish clean verify</preparationGoals>
+                    <releaseProfiles>schema,publish</releaseProfiles>
                     <pushChanges>false</pushChanges>
                     <remoteTagging>false</remoteTagging>
                 </configuration>

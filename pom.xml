@@ -94,6 +94,12 @@
             <version>${avro.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.maven.release</groupId>
+            <artifactId>maven-release-semver-policy</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
         <!-- Test dependencies -->
 
         <dependency>

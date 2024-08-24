@@ -23,7 +23,7 @@
     <artifactId>webdata-schema</artifactId>
     <packaging>jar</packaging>
     <groupId>nl.basjes.avro-example</groupId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.7</version>
 
     <name>WebData schema</name>
 
@@ -261,6 +261,7 @@
                                     <arguments>
                                         <argument>-c</argument>
                                         <argument>
+                                            rm ${project.basedir}/src/main/resources/schema-history/*-SNAPSHOT.csv
                                             rm ${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv;
                                             cat ${project.basedir}/src/main/resources/schema-history/*.csv &gt; ${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv</argument>
                                     </arguments>

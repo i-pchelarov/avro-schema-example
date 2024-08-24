@@ -218,6 +218,21 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>com.amashchenko.maven.plugin</groupId>
+                        <artifactId>gitflow-maven-plugin</artifactId>
+                        <version>1.21.0</version>
+                        <configuration>
+                            <pushRemote>true</pushRemote>
+                            <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>
+                            <preReleaseGoals>verify</preReleaseGoals>
+                            <preHotfixGoals>verify</preHotfixGoals>
+                            <gitFlowConfig>
+                                <productionBranch>prod</productionBranch>
+                                <developmentBranch>dev</developmentBranch>
+                            </gitFlowConfig>
+                        </configuration>
+                    </plugin>
+                    <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>${exec-maven-plugin.version}</version>

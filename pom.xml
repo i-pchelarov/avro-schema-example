@@ -231,36 +231,6 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>Commit the schema with the code base</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>git</executable>
-                                    <arguments>
-                                        <argument>add</argument>
-                                        <argument>${project.basedir}/src/main/resources/schema-history/${project.version}.csv</argument>
-                                        <argument>${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>publish</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>${exec-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
                                 <id>Push the newly released schema to the schema registry</id>
                                 <phase>deploy</phase>
                                 <goals>
@@ -278,7 +248,38 @@
                                     </environmentVariables>
                                 </configuration>
                             </execution>
+
+                            <!--                            <execution>-->
+<!--                                <id>Commit the schema with the code base</id>-->
+<!--                                <phase>verify</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>exec</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <executable>git</executable>-->
+<!--                                    <arguments>-->
+<!--                                        <argument>add</argument>-->
+<!--                                        <argument>${project.basedir}/src/main/resources/schema-history/${project.version}.csv</argument>-->
+<!--                                        <argument>${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv</argument>-->
+<!--                                    </arguments>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
                         </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>publish</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec-maven-plugin.version}</version>
+                        <executions>
+                       </executions>
                     </plugin>
 
                 </plugins>

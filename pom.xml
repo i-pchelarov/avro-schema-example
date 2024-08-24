@@ -23,7 +23,7 @@
     <artifactId>webdata-schema</artifactId>
     <packaging>jar</packaging>
     <groupId>nl.basjes.avro-example</groupId>
-    <version>1.0.12-SNAPSHOT</version>
+    <version>1.0.12</version>
 
     <name>WebData schema</name>
 
@@ -496,7 +496,7 @@
 
                     <tagNameFormat>v@{project.version}</tagNameFormat>
 
-                    <preparationGoals>-Ppublish clean install</preparationGoals>
+                    <preparationGoals>clean install -Pschema,publish</preparationGoals>
                     <releaseProfiles>schema,publish</releaseProfiles>
                     <pushChanges>false</pushChanges>
                     <remoteTagging>false</remoteTagging>
@@ -560,7 +560,7 @@
         <url>https://github.com/i-pchelarov/avro-schema-example</url>
         <connection>scm:git:https://github.com/i-pchelarov/avro-schema-example.git</connection>
         <developerConnection>scm:git:file:///${project.basedir}</developerConnection>
-      <tag>v1.0.9</tag>
+      <tag>v1.0.12</tag>
   </scm>
 
 </project>

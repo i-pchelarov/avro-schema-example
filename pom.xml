@@ -40,6 +40,7 @@
 
         <schema.name>Measurement</schema.name>
         <schema.namespace>nl.basjes.avroexample.webdata</schema.namespace>
+        <schema.registry>http://localhost:8000</schema.registry>
 
         <!-- FIXME: THIS IS ONLY AN EXAMPLE PROJECT WHERE WE DO NOT ACTUALLY DEPLOY A JAR TO MAVEN CENTRAL        -->
         <!--        SO WE ARE SKIPPING THE DEPLOYMENT STEP WHICH IS A REALLY WEIRD THING ... EXCEPT WHEN IT IS A DEMO -->
@@ -214,6 +215,40 @@
                                     </arguments>
                                 </configuration>
                             </execution>
+
+                            <execution>
+                                <id>Push the newly released schema to the schema registry</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- FIXME: THIS IS ONLY AN EXAMPLE PROJECT WHERE WE DO NOT ACTUALLY DEPLOY A SCHEMA TO A REGISTRY -->
+                                    <!--        THIS IS JUST A DUMMY IMPLEMENTATION WHICH YOU SHOULD REPLACE WITH WHATEVER YOU HAVE    -->
+                                    <executable>publish-schema.sh</executable>
+                                    <environmentVariables>
+                                        <REGISTRY_URL>${schema.registry}</REGISTRY_URL>
+                                        <FILE>${project.basedir}/src/main/resources/schema-history/${project.version}.csv</FILE>
+                                        <SCHEMA>${schema.name}</SCHEMA>
+                                        <VERSION>${project.version}</VERSION>
+                                    </environmentVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>publish</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec-maven-plugin.version}</version>
+                        <executions>
                             <execution>
                                 <id>Generate the full schema history file</id>
                                 <phase>verify</phase>
@@ -231,55 +266,21 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>Push the newly released schema to the schema registry</id>
-                                <phase>deploy</phase>
+                                <id>Commit the schema with the code base</id>
+                                <phase>verify</phase>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <!-- FIXME: THIS IS ONLY AN EXAMPLE PROJECT WHERE WE DO NOT ACTUALLY DEPLOY A SCHEMA TO A REGISTRY -->
-                                    <!--        THIS IS JUST A DUMMY IMPLEMENTATION WHICH YOU SHOULD REPLACE WITH WHATEVER YOU HAVE    -->
-                                    <executable>publish-schema.sh</executable>
-                                    <environmentVariables>
-                                        <REGISTRY_URL>http://localhost:8000</REGISTRY_URL>
-                                        <FILE>${project.basedir}/src/main/resources/schema-history/${project.version}.csv</FILE>
-                                        <SCHEMA>${schema.name}</SCHEMA>
-                                        <VERSION>${project.version}</VERSION>
-                                    </environmentVariables>
+                                    <executable>git</executable>
+                                    <arguments>
+                                        <argument>add</argument>
+                                        <argument>${project.basedir}/src/main/resources/schema-history/${project.version}.csv</argument>
+                                        <argument>${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv</argument>
+                                    </arguments>
                                 </configuration>
                             </execution>
-
-                            <!--                            <execution>-->
-<!--                                <id>Commit the schema with the code base</id>-->
-<!--                                <phase>verify</phase>-->
-<!--                                <goals>-->
-<!--                                    <goal>exec</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <executable>git</executable>-->
-<!--                                    <arguments>-->
-<!--                                        <argument>add</argument>-->
-<!--                                        <argument>${project.basedir}/src/main/resources/schema-history/${project.version}.csv</argument>-->
-<!--                                        <argument>${project.basedir}/src/main/resources/schema-history/SchemaHistory.csv</argument>-->
-<!--                                    </arguments>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
                         </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>publish</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>${exec-maven-plugin.version}</version>
-                        <executions>
-                       </executions>
                     </plugin>
 
                 </plugins>

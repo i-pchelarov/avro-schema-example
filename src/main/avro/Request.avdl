@@ -21,6 +21,7 @@ protocol WebData {
     record Request {
     /** The resource */
         string resource;
+        long timestamp = 0;
 
     /** What was the (HTTP) response code? (i.e. 200/404/503/...) */
         union { null, string } httpResponse = null;

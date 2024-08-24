@@ -496,7 +496,7 @@
 
                     <tagNameFormat>v@{project.version}</tagNameFormat>
 
-                    <preparationGoals>-Pschema,publish clean verify</preparationGoals>
+                    <preparationGoals>-Pschema clean verify</preparationGoals>
                     <releaseProfiles>schema,publish</releaseProfiles>
                     <pushChanges>false</pushChanges>
                     <remoteTagging>false</remoteTagging>
@@ -560,7 +560,7 @@
         <url>https://github.com/nielsbasjes/avro-schema-example</url>
         <connection>scm:git:https://github.com/nielsbasjes/avro-schema-example.git</connection>
         <developerConnection>scm:git:file:///${project.basedir}</developerConnection>
-      <tag>v1.0.8</tag>
+      <tag>v1.0.9</tag>
   </scm>
 
 </project>

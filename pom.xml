@@ -208,6 +208,15 @@
                                 <developmentBranch>dev</developmentBranch>
                             </gitFlowConfig>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>Prepare release branch</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>release-start</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>

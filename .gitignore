@@ -6,3 +6,4 @@ avsc/
 target/
 
 *versionsBackup
+/src/main/resources/schema-history/*-SNAPSHOT.csv

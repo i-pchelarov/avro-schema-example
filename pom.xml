@@ -23,7 +23,7 @@
     <artifactId>webdata-schema</artifactId>
     <packaging>jar</packaging>
     <groupId>nl.basjes.avro-example</groupId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.6</version>
 
     <name>WebData schema</name>
 

@@ -323,26 +323,6 @@
             </resource>
         </resources>
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.amashchenko.maven.plugin</groupId>
-                    <artifactId>gitflow-maven-plugin</artifactId>
-                    <version>1.21.0</version>
-                    <configuration>
-                        <pushRemote>true</pushRemote>
-                        <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>
-                        <preReleaseGoals>verify</preReleaseGoals>
-                        <preHotfixGoals>verify</preHotfixGoals>
-                        <gitFlowConfig>
-                            <productionBranch>prod</productionBranch>
-                            <developmentBranch>dev</developmentBranch>
-                        </gitFlowConfig>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
 
             <plugin>

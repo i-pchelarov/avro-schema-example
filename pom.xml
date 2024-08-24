@@ -139,23 +139,23 @@
         </profile>
 
         <profile>
-            <id>start</id>
+            <id>prepare</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>com.amashchenko.maven.plugin</groupId>
                         <artifactId>gitflow-maven-plugin</artifactId>
-                        <version>1.21.0</version>
-                        <configuration>
-                            <pushRemote>true</pushRemote>
-                            <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>
-                            <preReleaseGoals>verify</preReleaseGoals>
-                            <preHotfixGoals>verify</preHotfixGoals>
-                            <gitFlowConfig>
-                                <productionBranch>prod</productionBranch>
-                                <developmentBranch>dev</developmentBranch>
-                            </gitFlowConfig>
-                        </configuration>
+<!--                        <version>1.21.0</version>-->
+<!--                        <configuration>-->
+<!--                            <pushRemote>true</pushRemote>-->
+<!--                            <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>-->
+<!--                            <preReleaseGoals>verify</preReleaseGoals>-->
+<!--                            <preHotfixGoals>verify</preHotfixGoals>-->
+<!--                            <gitFlowConfig>-->
+<!--                                <productionBranch>prod</productionBranch>-->
+<!--                                <developmentBranch>dev</developmentBranch>-->
+<!--                            </gitFlowConfig>-->
+<!--                        </configuration>-->
                         <executions>
                             <execution>
                                 <id>Prepare release branch</id>
@@ -166,13 +166,33 @@
                             </execution>
                         </executions>
                     </plugin>
-
                 </plugins>
             </build>
         </profile>
 
         <profile>
-            <id>prepare</id>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.amashchenko.maven.plugin</groupId>
+                        <artifactId>gitflow-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>Prepare release branch</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>release-finish</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>schema</id>
             <build>
                 <plugins>
                     <plugin>
@@ -232,24 +252,9 @@
         </profile>
 
         <profile>
-            <id>release</id>
+            <id>publish</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>com.amashchenko.maven.plugin</groupId>
-                        <artifactId>gitflow-maven-plugin</artifactId>
-                        <version>1.21.0</version>
-                        <configuration>
-                            <pushRemote>true</pushRemote>
-                            <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>
-                            <preReleaseGoals>verify</preReleaseGoals>
-                            <preHotfixGoals>verify</preHotfixGoals>
-                            <gitFlowConfig>
-                                <productionBranch>prod</productionBranch>
-                                <developmentBranch>dev</developmentBranch>
-                            </gitFlowConfig>
-                        </configuration>
-                    </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
@@ -284,6 +289,26 @@
 
     <build>
         <defaultGoal>clean package</defaultGoal>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.amashchenko.maven.plugin</groupId>
+                    <artifactId>gitflow-maven-plugin</artifactId>
+                    <version>1.21.0</version>
+                    <configuration>
+                        <pushRemote>true</pushRemote>
+                        <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>
+                        <preReleaseGoals>verify</preReleaseGoals>
+                        <preHotfixGoals>verify</preHotfixGoals>
+                        <gitFlowConfig>
+                            <productionBranch>prod</productionBranch>
+                            <developmentBranch>dev</developmentBranch>
+                        </gitFlowConfig>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
         <resources>
             <resource>

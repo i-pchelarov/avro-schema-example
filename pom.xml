@@ -496,7 +496,7 @@
 
                     <tagNameFormat>v@{project.version}</tagNameFormat>
 
-                    <preparationGoals>-Pschema clean verify</preparationGoals>
+                    <preparationGoals>clean verify</preparationGoals>
                     <releaseProfiles>schema,publish</releaseProfiles>
                     <pushChanges>false</pushChanges>
                     <remoteTagging>false</remoteTagging>
